@@ -24,13 +24,10 @@ jobs:
           git clone --depth 1 https://github.com/FunkinCrew/Funkin.assets.git assets
           git clone --depth 1 https://github.com/FunkinCrew/Funkin.art.git art
 
-      - name: Setup Haxe 4.2.5 binary archive
-        run: |
-          wget https://github.com/HaxeFoundation/haxe/releases/download/4.2.5/haxe-4.2.5-linux64.tar.gz
-          tar -zxvf haxe-4.2.5-linux64.tar.gz
-          sudo mv haxe_4.2.5 /opt/haxe
-          echo "/opt/haxe" >> $GITHUB_PATH
-          haxelib setup ~/.haxelib
+      - name: Setup Haxe 4.2.5
+        uses: HaxeFoundation/setup-haxe@v3
+        with:
+          haxe-version: "4.2.5"
 
       - name: Cache haxelib
         id: cache-hmm
