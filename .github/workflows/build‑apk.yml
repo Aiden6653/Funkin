@@ -41,7 +41,7 @@ jobs:
 
       - name: Install libs via hmm
         run: |
-          haxelib --never newrepo
+          haxelib newrepo
           haxelib run hmm install -q
 
       - name: Setup Android SDK
