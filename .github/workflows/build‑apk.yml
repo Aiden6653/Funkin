@@ -24,19 +24,12 @@ jobs:
           git clone --depth 1 https://github.com/FunkinCrew/Funkin.assets.git assets
           git clone --depth 1 https://github.com/FunkinCrew/Funkin.art.git art
 
-      - name: Trim assets for smaller apk
+      - name: Setup Haxe 4.3.6 binary archive
         run: |
-          rm -rf assets/data/languages/*
-          cp assets/data/languages/en-US.json assets/data/languages/
-          rm -rf assets/extra
-          find assets/music -name "*demo*.ogg" -delete
-          find assets/music -name "*draft*.ogg" -delete
-
-      - name: Setup Haxe 4.3.6
-        run: |
-          sudo add-apt-repository ppa:haxe/haxe4.3
-          sudo apt-get update
-          sudo apt-get install -y haxe=1:4.3.6-1
+          wget https://github.com/HaxeFoundation/haxe/releases/download/4.3.6/haxe-4.3.6-linux64.tar.gz
+          tar -zxvf haxe-4.3.6-linux64.tar.gz
+          sudo mv haxe-4.3.6 /opt/haxe
+          echo "/opt/haxe" >> $GITHUB_PATH
           haxelib setup ~/.haxelib
 
       - name: Cache haxelib
@@ -62,5 +55,5 @@ jobs:
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: fnf-vslice-android
+          name: fnf‑vslice‑android
           path: export/android/bin/app-release-unsigned.apk
