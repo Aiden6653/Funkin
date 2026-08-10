@@ -1,4 +1,4 @@
-name: Build FNF APK
+name: Build FNF 0.8.4 APK
 on:
   workflow_dispatch:
     inputs:
